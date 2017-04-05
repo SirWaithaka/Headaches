@@ -19,4 +19,12 @@ def get_links(url, dom_element):
 
     return links
 
-print(get_links(url,dom_element))
+# print(get_links(url,dom_element))
+
+links = get_links(url,dom_element)
+page = requests.get(links[0])
+soup = BeautifulSoup(page.content, 'html.parser')
+
+div = soup.find('div', attrs= {"class": "bn-row first-row"})
+header = div.find('h1', attrs={"class": "single-title"})
+print(header)
